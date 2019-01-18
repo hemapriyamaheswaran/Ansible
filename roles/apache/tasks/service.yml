@@ -1,0 +1,4 @@
+---
+- name: start and enable
+  service: name=httpd state=restarted enabled=yes
+#  service: name=apache2 state=restarted enabled=yes

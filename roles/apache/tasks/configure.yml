@@ -1,0 +1,11 @@
+---
+- name: Copy httpd configuration files
+  copy: src=/home/ansible/roles/apache/files/httpd.conf dest=/etc/httpd/conf/httpd.conf
+#  copy: src=files/apache2.conf dest=/etc/apache2/apache2.conf
+- name: Copy index.html
+  template:
+        src: /etc/ansible/index.html.j2
+        dest: /var/www/html/index.html
+#  copy: src=/home/ansible/roles/apache/files/index.html dest=var/www/html/
+  notify:
+  - restart apache
