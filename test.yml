@@ -1,0 +1,8 @@
+---
+- hosts: ubuntu,centos
+  become: yes
+  tasks:
+    - name: start apache2
+      service: name=apache2 enabled=yes state=restarted
+    - name: start httpd
+      service: name=httpd enabled=yes state=restarted

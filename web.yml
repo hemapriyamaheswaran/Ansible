@@ -1,0 +1,21 @@
+---
+- hosts: ubuntu,centos
+  become: yes
+  tasks:
+    - name: install apache this way
+      apt: name=apache2 update_cache=yes state=latest
+      notify: start apache2
+      when: ansible_os_family == "Debian"
+    - name: install apache this way
+      yum: name=httpd update_cache=yes state=latest
+      notify: start httpd
+      when: ansible_os_family == "Redhat"
+    - name: install index
+      template:
+        src: /etc/ansible/index.html.j2
+        dest: /var/www/html/index.html
+  handlers:
+    - name: start apache2
+      service: name=apache2 enabled=yes state=started
+    - name: start httpd
+      service: name=httpd enabled=yes state=started

@@ -1,0 +1,12 @@
+---
+- hosts: 192.168.1.117
+  become: yes
+  tasks:
+    - name: apache
+      apt: name=apache2 state=latest
+
+- hosts: 192.168.1.116
+  become: yes
+  tasks:
+    - name: apache
+      yum: name=httpd state=latest

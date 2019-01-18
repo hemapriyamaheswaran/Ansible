@@ -1,0 +1,10 @@
+---
+- hosts: ubuntu,centos 
+  tasks:
+   - name: print stdout
+     command: echo "hello there"
+     register: hello
+   - debug: msg="stdout={{ hello.stdout }}"
+   - debug: msg="stderr={{ hello.stderr }}"
+   - debug:
+       msg: "system {{ inventory_hostname }} has gateway {{ ansible_default_ipv4.gateway }}"
